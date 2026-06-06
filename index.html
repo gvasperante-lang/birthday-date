@@ -150,8 +150,8 @@ transform:translateY(110vh) rotate(720deg);
 <div class="card">
 
 <div id="screen1">
-<h1>🎂 Birthday Mission</h1>
-<h2>For Aizel 💙</h2>
+<h1>🎂 Birthday Celeb</h1>
+<h2>for my bebe 💙</h2>
 
 <p>
 Only the birthday celebrant may proceed.
@@ -167,19 +167,15 @@ Only the birthday celebrant may proceed.
 <div id="screen2" class="hidden">
 <h2>Choose your birthday vibe ✨</h2>
 
-<button class="choice" onclick="next2()">🍣 Japanese Feast</button>
-<button class="choice" onclick="next2()">🥩 Grill + Hotpot</button>
-<button class="choice" onclick="next2()">🍽️ Buffet Adventure</button>
-<button class="choice" onclick="next2()">👨‍👩‍👧 Family Celebration</button>
+<button class="choice" onclick="next2('🍣 Japanese')">🍣 Japanese </button> <button class="choice" onclick="next2('🥩 Grill + Hotpot')">🥩 Grill + Hotpot</button> <button class="choice" onclick="next2('🍽️ Buffet')">🍽️ Buffet</button> <button class="choice" onclick="next2('👨‍👩‍👧 Family Celebration')">👨‍👩‍👧 Family Celebration</button>
+
 </div>
 
 <div id="screen3" class="hidden">
 <h2>What matters most?</h2>
 
-<button class="choice" onclick="analyze()">❤️ Good Company</button>
-<button class="choice" onclick="analyze()">😂 Good Laughs</button>
-<button class="choice" onclick="analyze()">📸 Good Memories</button>
-<button class="choice" onclick="analyze()">🍴 Good Food</button>
+<button class="choice" onclick="analyze('ako')">❤️ Ako</button> <button class="choice" onclick="analyze('😂 Good Laughs')">😂 Good Laughs</button> <button class="choice" onclick="analyze('📸 Good Memories')">📸 Good Memories</button> <button class="choice" onclick="analyze('🍴 Good Food')">🍴 Good Food</button>
+
 </div>
 
 <div id="screen4" class="hidden">
@@ -191,22 +187,31 @@ Analyzing...
 </div>
 
 <div id="screen5" class="hidden">
+
 <h1>🎉 Results Ready!</h1>
 
 <p>After extensive analysis...</p>
 
-<p>✅ Great Food</p>
-<p>✅ Great Memories</p>
-<p>✅ Great Company</p>
+<div id="resultChoices"></div>
 
 <br>
 
-<h2>
-Recommendation:
-</h2>
+<p>
+✅ Great Food
+</p>
 
-<p style="font-size:22px;">
-Go on a birthday date with Shin ❤️
+<p>
+✅ Great Memories
+</p>
+
+<p>
+✅ Great Company
+</p>
+
+<br>
+
+<p style="font-size:22px;font-weight:bold;">
+Would you allow Shin to take you out on your birthday? ❤️
 </p>
 
 <br>
@@ -214,9 +219,9 @@ Go on a birthday date with Shin ❤️
 <button class="main-btn yes" onclick="acceptDate()">
 YES ❤️
 </button>
-</div>
 
 </div>
+
 
 <button id="noBtn" class="main-btn no hidden">
 NO
@@ -225,6 +230,9 @@ NO
 <div id="confetti"></div>
 
 <script>
+
+let selectedVibe = "";
+let selectedPriority = "";
 
 const birthday = new Date("June 15, 2026");
 
@@ -252,12 +260,19 @@ screen1.classList.add("hidden");
 screen2.classList.remove("hidden");
 }
 
-function next2(){
-screen2.classList.add("hidden");
-screen3.classList.remove("hidden");
+function next2(choice){
+
+selectedVibe = choice;
+
+document.getElementById("screen2").classList.add("hidden");
+document.getElementById("screen3").classList.remove("hidden");
+
 }
 
-function analyze(){
+function analyze(choice){
+
+selectedPriority = choice;
+  
 
 screen3.classList.add("hidden");
 screen4.classList.remove("hidden");
@@ -277,8 +292,24 @@ text.innerHTML="Generating recommendation... ████████ 100%";
 },4000);
 
 setTimeout(()=>{
-screen4.classList.add("hidden");
-screen5.classList.remove("hidden");
+document.getElementById("screen4").classList.add("hidden");
+
+document.getElementById("resultChoices").innerHTML = `
+
+<p style="font-size:20px;font-weight:bold;">
+Your Birthday Plan
+</p>
+
+<p>
+${selectedVibe}
+</p>
+
+<p>
+${selectedPriority}
+</p>
+`;
+
+document.getElementById("screen5").classList.remove("hidden");
 
 document.getElementById("noBtn").classList.remove("hidden");
 
@@ -290,12 +321,11 @@ moveNoButton();
 const noBtn = document.getElementById("noBtn");
 
 const messages = [
-"Sure ka? 😅",
-"Pag-isipan mo ulit 🙈",
-"Hindi yata pwede yan 😏",
-"Try mo yung YES ❤️",
-"Algorithm says YES only 🤖",
-"Nice try 😂"
+"At bakit? 🙂",
+"Ah, pinindot mo pala talaga",
+"ANGAS MO AH 😠",
+"Bakit ayaw mo mag-YES?!?!?",
+"'di 'wag!!!!!!!"
 ];
 
 let clickCount = 0;
@@ -337,7 +367,7 @@ Congratulations Aizel!
 
 <p style="font-size:22px;font-weight:bold;">
 You have successfully unlocked
-a birthday date with Shin ❤️
+a birthday date with your bebe!!!!! ❤️
 </p>
 
 <br>
@@ -360,13 +390,18 @@ Rewards included:
 Now we only have one important decision left...
 </p>
 
-<p style="font-size:24px;">
-🍣 Japanese
-<br><br>
-🍽️ Buffet
-<br><br>
-🥩 Grill + Hotpot
+<p>
+Your Birthday Plan:
 </p>
+
+<p style="font-size:22px;">
+${selectedVibe}
+</p>
+
+<p style="font-size:20px;">
+${selectedPriority}
+</p>
+
 
 <br>
 
