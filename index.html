@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Planner 🎂</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#fff5f7;
+    text-align:center;
+    padding:30px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,.1);
+}
+
+h1{
+    color:#ff4d88;
+}
+
+.option{
+    display:block;
+    margin:12px;
+    padding:15px;
+    border:2px solid #ffb3c6;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#ffe6ee;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+#yes{
+    background:#ff4d88;
+    color:white;
+}
+
+#no{
+    background:#ccc;
+    position:absolute;
+}
+
+.hidden{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎂 Birthday Decision Maker 🎂</h1>
+
+<p>Answer these important birthday questions.</p>
+
+<h3>Anong gusto mong birthday celebration?</h3>
+
+<div class="option">👨‍👩‍👧 Celebrate with Family</div>
+<div class="option">🍽️ Buffet</div>
+<div class="option">🍣 Japanese</div>
+<div class="option">🥩 Grill + Hotpot</div>
+
+<br><br>
+
+<button onclick="showQuestion()" id="start">
+See Result</button>
+
+<div id="final" class="hidden">
+
+<h2>🎉 Result Ready!</h2>
+
+<p>
+After careful scientific analysis...
+</p>
+
+<p>
+You deserve good food, good company,
+and a memorable birthday.
+</p>
+
+<h2>
+Would you allow me to take you out on your birthday? ❤️
+</h2>
+
+<button id="yes"
+onclick="acceptDate()">
+YES ❤️
+</button>
+
+<button id="no">
+NO
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function showQuestion(){
+    document.getElementById('final').classList.remove('hidden');
+}
+
+function acceptDate(){
+    document.body.innerHTML = `
+    <div style="text-align:center;padding:50px;">
+    <h1>🎉 YAY! 🎉</h1>
+    <h2>Date request accepted ❤️</h2>
+    <p>Now let's decide where we're eating 😏</p>
+    </div>
+    `;
+}
+
+const noBtn=document.getElementById('no');
+
+noBtn.addEventListener('mouseover',()=>{
+    const x=Math.random()*(window.innerWidth-120);
+    const y=Math.random()*(window.innerHeight-60);
+
+    noBtn.style.left=x+'px';
+    noBtn.style.top=y+'px';
+});
+
+</script>
+
+</body>
+</html>
